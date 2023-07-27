@@ -1,0 +1,52 @@
+{
+    "name": "typescript-template",
+    "version": "1.0.0",
+    "description": "A Template for a generic TypeScript project",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "wireit",
+        "start": "wireit"
+    },
+    "wireit": {
+        "start": {
+            "command": "node dist/index.mjs",
+            "files": [
+                "dist/**"
+            ],
+            "dependencies": [
+                "build-dev"
+            ]
+        },
+        "build": {
+            "command": "tsup src/index.ts --format cjs,esm --dts --minify",
+            "files": [
+                "src/**"
+            ],
+            "output": [
+                "dist/**"
+            ]
+        },
+        "build-dev": {
+            "command": "tsup src/index.ts --format esm --dts --sourcemap",
+            "files": [
+                "src/**"
+            ],
+            "output": [
+                "dist/**"
+            ]
+        }
+    },
+    "author": "Temm",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/node": "^18.16.19",
+        "tsup": "^7.1.0",
+        "typescript": "^5.1.6",
+        "wireit": "^0.10.0"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}
