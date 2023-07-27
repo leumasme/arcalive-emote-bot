@@ -1,0 +1,11 @@
+diff --git a/node_modules/discord.js/typings/index.d.ts b/node_modules/discord.js/typings/index.d.ts
+index 78432a3..fca0db6 100644
+--- a/node_modules/discord.js/typings/index.d.ts
++++ b/node_modules/discord.js/typings/index.d.ts
+@@ -1,5 +1,4 @@
+-// DOM types required for undici
+-/// <reference lib="dom" />
++
+ 
+ import {
+   ActionRowBuilder as BuilderActionRow,
