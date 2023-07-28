@@ -58,15 +58,24 @@ export async function cleanEmoteSlots() {
     return { animatedFree: slots - animatedCount, staticFree: slots - staticCount };
 }
 
-export async function setEmotes(emojiAttachments: (Buffer | string)[]) {
+export async function setEmotes(emojiAttachments: Buffer[]) {
     await waitReady();
     const server = await getServer();
 
     for (let attachment of emojiAttachments) {
-        await server.emojis.create({
-            attachment,
-            name: `arca_${Math.random().toString(36).substring(7)}`, // TODO: more readable names
-        })
+        const name = `arca_${Math.random().toString(36).substring(7)}`; // TODO: more readable names
+        console.log(`Creating emote ${name} of attachment size ${attachment.length}`)
+        try {
+            await server.emojis.create({
+                attachment,
+                name
+            })
+        } catch {
+            // TODO: check if error is missing permissions
+            // if it's file too big, its probably a gif that was too large
+            // we could try to re-convert it, but for now just skip it
+            console.log("Failed to create emote, skipping...")
+        }
     }
 }
 
