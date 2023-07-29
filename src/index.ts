@@ -21,6 +21,6 @@ cron.schedule("0 0 0 * * *", async () => { // Run every day at midnight
         console.error(e)
     }
 }, {
-    runOnInit: true,
+    // runOnInit: true, // Uncomment to run on startup
     timezone: "Europe/Berlin",
 });
