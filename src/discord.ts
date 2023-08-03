@@ -10,6 +10,11 @@ bot.on("ready", () => {
     console.log(`Logged in as ${bot.user?.tag}`);
 })
 
+bot.on("error", (e) => {
+    // Unhandled error will crash process
+    console.error("Discord got error at " + new Date().toISOString(), e)
+})
+
 if (!process.env.DISCORD_TOKEN) throw new Error("No discord token provided! Add `DISCORD_TOKEN` to .env file.");
 
 bot.login(process.env.DISCORD_TOKEN);
